@@ -1,0 +1,531 @@
+@mixin position($posT, $posL) {
+  position: fixed;
+  z-index: -2;
+  top: $posT;
+  left: $posL;
+  transform: translate(-50%, 50%);
+  width: 40px;
+  height: 40px;
+  filter: invert(.5) sepia(.7);
+}
+@mixin Card() {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(1, 5, 20, 0.568);
+  box-shadow: 3px 3px 13px -1px rgba(0, 10, 14, 0.795);
+  backdrop-filter: blur(2px);
+  margin: 400px 40px 200px 40px;
+  border-radius: 45px;
+}
+@mixin Card-Container() {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 30px 35px 30px;
+  border-radius: 20px;
+}
+
+body {
+  background-color: rgb(224, 193, 125);
+  background-image: url("../assets/double-bubble-dark.png");
+  background-blend-mode: multiply;
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  nav {
+    min-height: 10vh;
+    max-height: 14vh;
+    background-color: rgba(0, 0, 0, 0.568);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-box-shadow: 2px 2px 13px -1px rgba(5, 5, 5, 0.65);
+    box-shadow: 2px 2px 13px -1px rgba(0, 10, 14, 0.65);
+    .nav-bar {
+      width: 78vw;
+      //   border: rgb(20, 125, 245) 1px solid;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px;
+
+      .logo {
+        color: cadetblue;
+        display: flex;
+        align-items: center;
+
+        .SSLE {
+          overflow: hidden;
+          span {
+            position: relative;
+            margin-left: 10px;
+          }
+        }
+
+        span {
+          margin-left: 10px;
+        }
+
+        img {
+          width: 25px;
+          height: 25px;
+          margin-right: 8px;
+        }
+      }
+      .links {
+        display: flex;
+        justify-content: space-between;
+        width: 23vw;
+
+        a {
+          position: relative;
+          display: block;
+          text-decoration: none;
+          color: rgb(87, 134, 187);
+          font-size: medium;
+          transition: 0.9s;
+        }
+
+        a::after {
+          position: absolute;
+          content: "";
+          width: 90%;
+          height: 3px;
+          top: 110%;
+          left: 5%;
+          background: rgba(22, 119, 184, 0.685);
+          transition: transform 0.9s;
+          transform: scaleX(0);
+          transform-origin: right;
+        }
+
+        a:hover::after {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+      }
+    }
+  }
+
+  .main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    .container {
+      // border: grey 2px solid;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+
+      #demo {
+        -webkit-box-shadow: 2px 2px 13px -1px rgba(63, 216, 236, 0.65);
+        box-shadow: 2px 2px 13px -1px rgba(67, 204, 255, 0.65);
+      }
+
+      .orb {
+        position: absolute;
+        z-index: -1;
+        top: 70%;
+        background: url("../assets/Bg.jpg") no-repeat center;
+        background-size: cover;
+        background-attachment: fixed;
+        clip-path: polygon(0 0, 100% 16%, 100% 87%, 0% 100%);
+        width: 100vw;
+        height: 450px;
+      }
+
+      .item {
+        @include position(30%, 20%);
+      }
+
+      .item-1 {
+        @include position(40%, 90%);
+      }
+
+      .item-2 {
+        @include position(58%, 65%);
+      }
+
+      .item-3 {
+        @include position(53%, 35%);
+      }
+
+      .item-4 {
+        @include position(47%, 52%);
+      }
+
+      .item-5 {
+        @include position(62%, 10%);
+      }
+
+      .item-6 {
+        @include position(30%, 51%);
+      }
+
+      .item-7 {
+        @include position(23%, 75%);
+      }
+
+      .Form-container {
+        border: rgb(132, 212, 226) 2px solid;
+        border-radius: 35px;
+        backdrop-filter: blur(0.8px);
+        background: rgba(0, 0, 0, 0.151);
+        width: 520px;
+        height: 280px;
+        margin-top: 90px;
+
+        .input {
+          // border: grey 2px solid;
+          margin: 20px 20px 20px 0px;
+          display: flex;
+          flex-direction: column;
+
+          #Forgot {
+            align-self: flex-end;
+            margin-right: 20px;
+            font-size: smaller;
+            font-weight: 300;
+          }
+
+          label {
+            margin: 35px 0px 20px 30px;
+            color: wheat;
+            span {
+              color: rgba(70, 159, 175, 0.795);
+            }
+          }
+
+          input {
+            margin: 0px 0px 25px 30px;
+            background-color: transparent;
+            border: 1px rgba(245, 222, 179, 0.685) solid;
+            color: wheat;
+            height: 30px;
+            width: 445px;
+          }
+
+          button {
+            color: rgb(255, 255, 255);
+            font-weight: 400;
+            margin-left: 30px;
+            border: none;
+            width: 75px;
+            height: 32px;
+            border-radius: 8px;
+          }
+
+          button:focus {
+            border: none;
+            outline: none !important;
+          }
+
+          input:focus,
+          textarea:focus,
+          select:focus {
+            outline: none;
+          }
+        }
+      }
+
+      .Results-Card {
+        @include Card;
+        width: 656px;
+        height: 770px;
+        overflow: hidden;
+
+        .Card-Container {
+          @include Card-Container;
+          position: relative;
+
+          .avatar {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+          }
+
+          .Details {
+            margin: 5px;
+            display: flex;
+            flex-direction: column;
+            margin: 30px 0px 25px 0px;
+            // border: grey 1px solid;
+
+            .detail {
+              display: flex;
+              justify-content: space-between;
+              width: 500px;
+              // border: grey 1px solid;
+              margin-bottom: 12px;
+
+              div {
+                // border: grey 1px solid;
+                width: 80%;
+              }
+
+              span {
+                color: rgb(126, 119, 119);
+                font-size: medium;
+                font-weight: 400;
+              }
+            }
+          }
+
+          .next-container {
+            display: flex;
+            justify-content: flex-end;
+
+            .next {
+              width: 25px;
+              height: 25px;
+              position: relative;
+              left: 65px;
+            }
+          }
+        }
+
+        .Results {
+          border: grey 2px solid;
+          margin: 10px;
+          padding: 32px 36px 32px 36px;
+          border-radius: 35px;
+
+          hr {
+            position: relative;
+            right: 25px;
+            margin: 15px 0px 15px 0px;
+          }
+
+          div {
+            display: flex;
+            justify-content: space-between;
+            width: 500px;
+            // border: grey 1px solid;
+            margin-bottom: 9px;
+
+            .value {
+              color: rgba(93, 161, 216, 0.918);
+            }
+
+            .total {
+              color: rgba(147, 236, 129, 0.801);
+            }
+
+            span {
+              color: rgb(126, 119, 119);
+            }
+          }
+        }
+
+        .Stats-Container {
+          @include Card-Container();
+          position: absolute;
+
+          .First_line {
+            display: flex;
+            justify-content: space-between;
+            width: 596px;
+            margin: 6px;
+            // border: rgb(0, 0, 0) solid 1px;
+            .Rank-viewport {
+              color: white;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: 20px;
+              margin: 6px;
+              height: 200px;
+              width: 300px;
+              border: rgb(255, 255, 255) solid 1px;
+              background: rgba(132, 212, 226, 0.3);
+            }
+            .Detail-viewport {
+              color: white;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: 20px;
+              margin: 6px;
+              height: 200px;
+              width: 240px;
+              border: rgb(255, 255, 255) solid 1px;
+              background: rgba(209, 163, 78, 0.274);
+            }
+          }
+
+          .previous-container {
+            display: flex;
+            justify-content: flex-start;
+            width: 596px;
+            height: 2px;
+
+            .previous {
+              width: 25px;
+              height: 25px;
+              position: relative;
+              top: 90px;
+              right: 25px;
+              transform: rotate(180deg);
+            }
+          }
+
+          .Second_line {
+            display: flex;
+            justify-content: space-between;
+            width: 596px;
+            margin: 6px;
+            margin-top: 10px;
+            // border: rgb(0, 0, 0) solid 1px;
+            .Percentile-viewport {
+              color: white;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: 20px;
+              margin: 6px;
+              height: 218px;
+              width: 230px;
+              border: rgb(255, 255, 255) solid 1px;
+              background: rgba(209, 163, 78, 0.274);
+            }
+            .Top-10-viewport {
+              color: white;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: 20px;
+              margin: 6px;
+              height: 218px;
+              width: 320px;
+              border: rgb(255, 255, 255) solid 1px;
+              background: rgba(132, 212, 226, 0.3);
+            }
+          }
+
+          .Similar-viewport {
+            display: flex;
+            justify-content: space-between;
+            width: 596px;
+            height: 218px;
+            margin: 6px;
+            margin-top: 10px;
+            // border: rgb(0, 0, 0) solid 1px;
+            .Placement-viewport {
+              color: white;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: 20px;
+              width: 350px;
+              border: rgb(255, 255, 255) solid 1px;
+              background: rgba(132, 212, 226, 0.3);
+            }
+            .Result-viewport {
+              color: white;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: 20px;
+              width: 210px;
+              border: rgb(255, 255, 255) solid 1px;
+              background: rgba(209, 163, 78, 0.274);
+            }
+          }
+        }
+      }
+
+      .Footer {
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+        height: 35vh;
+        background-color: rgba(0, 0, 0, 0.432);
+        -webkit-box-shadow: 2px 2px 13px -1px rgba(5, 5, 5, 0.65);
+        box-shadow: 2px 2px 13px -1px rgba(0, 10, 14, 0.65);
+
+        .footer-container {
+          height: max-content;
+          width: 90%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .Contact-me {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+
+            a {
+              margin: 6px;
+              margin-top: 10px;
+              display: flex;
+              align-content: center;
+              overflow: hidden;
+              img {
+                width: 30px;
+                height: 30px;
+              }
+              span {
+                text-decoration: none;
+                color: ivory;
+                position: relative;
+                margin-left: 10px;
+                top: 5px;
+                left: -250px;
+                z-index: -4;
+              }
+            }
+          }
+        }
+
+        .view-Projects {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          // border: ivory solid 1px;
+          .text {
+            display: flex;
+            justify-content: center;
+            color: rgb(80, 182, 230);
+            // border: ivory solid 1px;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+          }
+          .portfolios {
+            display: flex;
+            .portfolio {
+              margin: 15px;
+              width: 280px;
+              height: 150px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
