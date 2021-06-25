@@ -1,7 +1,7 @@
 import { React, useState, useContext } from "react";
 import { useSpring, animated } from "react-spring";
 import { useLazyQuery } from "@apollo/client";
-import { LOAD_USERS } from "../GraphQL/Queries";
+import { LOAD_BY_NAME, LOAD_BY_Reg_NO } from "../GraphQL/Queries";
 import { ResultContext } from "../Contexts/ResultContext";
 
 function Form({ setToggle_2, Toggle_2 }) {
@@ -17,37 +17,73 @@ function Form({ setToggle_2, Toggle_2 }) {
 
   //Apollo Client Stuff
   const [Reg_no, setReg_no] = useState(0);
-  const [getResult, { data, loading, error }] = useLazyQuery(LOAD_USERS, {
-    variables: { Reg_no: Reg_no },
-  });
+  const [Name, setName] = useState("");
+  const [Forgot, setForgot] = useState(false);
+  const [getResult, { data: data_1, loading: loading_1, error: error_1 }] =
+    useLazyQuery(LOAD_BY_Reg_NO, {
+      variables: { Reg_no: Reg_no },
+    });
+  const [getName, { data: data_2, loading: loading_2, error: error_2 }] =
+    useLazyQuery(LOAD_BY_NAME, {
+      variables: { Name: Name },
+    });
 
-  if (loading) return <h1>Loading...</h1>;
-  if (error) return <p>Error has Occured: {error.message}</p>;
-  if (data) {
-    setData(data.getSingleResult);
-    setToggle_2(!Toggle_2);
+  if (loading_1) return <h1>Loading...</h1>;
+  if (error_1) return <p>Error has Occured: {error_1.message}</p>;
+  if (data_1) {
+    if (data_1.getResultByReg_no) {
+      setData(data_1.getResultByReg_no);
+      setToggle_2(!Toggle_2);
+    }
+  }
+
+  if (loading_2) {
+    return <></>;
+  }
+  if (error_2) {
+    setData({});
+  }
+  if (data_2) {
+    if (data_2.getResultByName) {
+      setData(data_2.getResultByName);
+      setToggle_2(!Toggle_2);
+    }
   }
 
   return (
     <div className="Form-container" id="demo">
       <form
         onSubmit={() => {
-          if (Reg_no >= 367635 && Reg_no <= 367912) {
-            getResult();
+          if (!Forgot) {
+            if (Reg_no >= 367635 && Reg_no <= 367912) {
+              getResult();
+            } else {
+              alert("Please Enter A Valid Registration number");
+            }
           } else {
-            alert("Please Enter A Valid Registration number");
+            getName();
           }
         }}
       >
         <div className="input">
-          <label>Registration number :</label>
-          <input
-            type="text"
-            placeholder="Reg_no ....."
-            onChange={(event) => {
-              setReg_no(parseInt(event.target.value));
-            }}
-          />
+          <label>{!Forgot ? <>Registration Number</> : <>Full Name</>} :</label>
+          {!Forgot ? (
+            <input
+              type="text"
+              placeholder="Reg_no....."
+              onChange={(event) => {
+                setReg_no(parseInt(event.target.value));
+              }}
+            />
+          ) : (
+            <input
+              type="text"
+              placeholder="Name Here....."
+              onChange={(event) => {
+                setName(event.target.value);
+              }}
+            />
+          )}
           <animated.button
             type="submit"
             style={fade}
@@ -60,8 +96,14 @@ function Form({ setToggle_2, Toggle_2 }) {
           >
             Submit
           </animated.button>
-          <label id="Forgot">
-            <span> Forgot Reg.No? </span> Find by name
+          <label
+            id="Forgot"
+            onClick={() => {
+              setForgot(!Forgot);
+            }}
+          >
+            <span> Forgot{!Forgot ? <> Reg.No? </> : <> Name? </>} </span> Find
+            by {!Forgot ? <> Name </> : <> Reg_no </>}
           </label>
         </div>
       </form>

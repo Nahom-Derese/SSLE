@@ -115,7 +115,6 @@ body {
           background: none;
           outline: none !important;
           border: none;
-          padding: 0;
         }
 
         button::after {
@@ -241,6 +240,11 @@ body {
             margin-right: 20px;
             font-size: smaller;
             font-weight: 300;
+            transition: 500ms all ease;
+            :hover {
+              font-weight: 400;
+              color: rgba(70, 159, 175);
+            }
           }
 
           label {
@@ -253,11 +257,12 @@ body {
 
           input {
             margin: 0px 0px 25px 30px;
+            padding: 10px;
             background-color: transparent;
             border: 1px rgba(245, 222, 179, 0.685) solid;
             color: wheat;
             height: 30px;
-            width: 445px;
+            width: 435px;
           }
 
           button {

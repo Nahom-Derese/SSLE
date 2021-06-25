@@ -1,7 +1,10 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import pervious from "../assets/next.svg";
+import { ResultContext } from "../Contexts/ResultContext";
 
 function Stats({ toggler, toggle }) {
+  const [Data, setData] = useContext(ResultContext);
+
   return (
     <Fragment>
       <div className="First_line">

@@ -77,7 +77,6 @@ body {
   background: none;
   outline: none !important;
   border: none;
-  padding: 0;
 }
 .App nav .nav-bar .links button::after {
   position: absolute;
@@ -239,6 +238,11 @@ body {
   margin-right: 20px;
   font-size: smaller;
   font-weight: 300;
+  transition: 500ms all ease;
+}
+.App .main-container .container .Form-container .input #Forgot :hover {
+  font-weight: 400;
+  color: #469faf;
 }
 .App .main-container .container .Form-container .input label {
   margin: 35px 0px 20px 30px;
@@ -249,11 +253,12 @@ body {
 }
 .App .main-container .container .Form-container .input input {
   margin: 0px 0px 25px 30px;
+  padding: 10px;
   background-color: transparent;
   border: 1px rgba(245, 222, 179, 0.685) solid;
   color: wheat;
   height: 30px;
-  width: 445px;
+  width: 435px;
 }
 .App .main-container .container .Form-container .input button {
   color: white;

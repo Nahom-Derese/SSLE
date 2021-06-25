@@ -1,7 +1,7 @@
 import { React, useState, useContext } from "react";
 import { animated, config, useTransition } from "react-spring";
 import { ResultContext } from "../Contexts/ResultContext";
-import Avatar from "../assets/Avatar.jpg";
+import Avatar from "../assets/Avatar.png";
 import Next from "../assets/next.svg";
 import Stats from "./Stats";
 
@@ -131,6 +131,7 @@ function Results() {
                         if (result === "SAT") {
                           return Total;
                         }
+                        return <></>;
                       })
                     : "null"}
                 </span>

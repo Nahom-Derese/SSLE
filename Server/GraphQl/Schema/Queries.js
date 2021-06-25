@@ -1,4 +1,4 @@
-import graphql from "graphql";
+import graphql, { GraphQLString } from "graphql";
 import {
   GraphQLSchema,
   GraphQLObjectType,
@@ -18,13 +18,23 @@ const Rootquery = new GraphQLObjectType({
       },
     },
 
-    getSingleResult: {
+    getResultByReg_no: {
       type: UserType,
       args: {
         Reg_no: { type: GraphQLInt },
       },
       resolve(parent, args) {
         return Data.find((result) => result.Reg_no === args.Reg_no);
+      },
+    },
+
+    getResultByName: {
+      type: UserType,
+      args: {
+        Name: { type: GraphQLString },
+      },
+      resolve(parent, args) {
+        return Data.find((result) => result.Name === args.Name.toUpperCase());
       },
     },
   },
