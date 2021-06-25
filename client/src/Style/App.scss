@@ -6,17 +6,20 @@
   transform: translate(-50%, 50%);
   width: 40px;
   height: 40px;
-  filter: invert(.5) sepia(.7);
+  filter: invert(0.5) sepia(0.7);
 }
 @mixin Card() {
+  position: absolute;
+  left: 50%;
+  top: 85%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(1, 5, 20, 0.568);
-  box-shadow: 3px 3px 13px -1px rgba(0, 10, 14, 0.795);
+  background-color: rgba(3, 2, 0, 0.562);
+  box-shadow: 3px 3px 13px -1px rgba(14, 10, 0, 0.795);
   backdrop-filter: blur(2px);
-  margin: 400px 40px 200px 40px;
   border-radius: 45px;
 }
 @mixin Card-Container() {
@@ -102,6 +105,31 @@ body {
           font-size: medium;
           transition: 0.9s;
         }
+        button {
+          position: relative;
+          display: block;
+          text-decoration: none;
+          color: rgb(87, 134, 187);
+          font-size: medium;
+          transition: 0.9s;
+          background: none;
+          outline: none !important;
+          border: none;
+          padding: 0;
+        }
+
+        button::after {
+          position: absolute;
+          content: "";
+          width: 90%;
+          height: 3px;
+          top: 110%;
+          left: 5%;
+          background: rgba(22, 119, 184, 0.685);
+          transition: transform 0.9s;
+          transform: scaleX(0);
+          transform-origin: right;
+        }
 
         a::after {
           position: absolute;
@@ -114,6 +142,16 @@ body {
           transition: transform 0.9s;
           transform: scaleX(0);
           transform-origin: right;
+        }
+
+        button:hover::after {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+
+        button:focus {
+          border: none;
+          outline: none !important;
         }
 
         a:hover::after {
@@ -131,13 +169,6 @@ body {
     overflow: hidden;
 
     .container {
-      // border: grey 2px solid;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-
       #demo {
         -webkit-box-shadow: 2px 2px 13px -1px rgba(63, 216, 236, 0.65);
         box-shadow: 2px 2px 13px -1px rgba(67, 204, 255, 0.65);
@@ -146,7 +177,7 @@ body {
       .orb {
         position: absolute;
         z-index: -1;
-        top: 70%;
+        top: 100%;
         background: url("../assets/Bg.jpg") no-repeat center;
         background-size: cover;
         background-attachment: fixed;
@@ -188,13 +219,16 @@ body {
       }
 
       .Form-container {
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         border: rgb(132, 212, 226) 2px solid;
         border-radius: 35px;
         backdrop-filter: blur(0.8px);
-        background: rgba(0, 0, 0, 0.151);
+        background: rgba(0, 0, 0, 0.466);
         width: 520px;
         height: 280px;
-        margin-top: 90px;
 
         .input {
           // border: grey 2px solid;
@@ -454,78 +488,90 @@ body {
           }
         }
       }
+    }
 
-      .Footer {
+    .Footer {
+      position: absolute;
+      top: 180vh;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      height: 40vh;
+      background-color: rgba(0, 0, 0, 0.432);
+      -webkit-box-shadow: 2px 2px 13px -1px rgba(5, 5, 5, 0.65);
+      box-shadow: 2px 2px 13px -1px rgba(0, 10, 14, 0.65);
+
+      .footer-container {
+        height: max-content;
+        width: 90%;
         display: flex;
-        justify-content: center;
-        width: 100vw;
-        height: 35vh;
-        background-color: rgba(0, 0, 0, 0.432);
-        -webkit-box-shadow: 2px 2px 13px -1px rgba(5, 5, 5, 0.65);
-        box-shadow: 2px 2px 13px -1px rgba(0, 10, 14, 0.65);
+        justify-content: space-between;
+        align-items: center;
 
-        .footer-container {
-          height: max-content;
-          width: 90%;
+        .Contact-me {
           display: flex;
-          justify-content: space-between;
-          align-items: center;
+          justify-content: center;
+          flex-direction: column;
 
-          .Contact-me {
+          a {
+            margin: 6px;
+            margin-top: 10px;
             display: flex;
-            justify-content: center;
-            flex-direction: column;
-
-            a {
-              margin: 6px;
-              margin-top: 10px;
-              display: flex;
-              align-content: center;
-              overflow: hidden;
-              img {
-                width: 30px;
-                height: 30px;
-              }
-              span {
-                text-decoration: none;
-                color: ivory;
-                position: relative;
-                margin-left: 10px;
-                top: 5px;
-                left: -250px;
-                z-index: -4;
-              }
+            align-content: center;
+            overflow: hidden;
+            img {
+              width: 30px;
+              height: 30px;
+            }
+            span {
+              text-decoration: none;
+              color: ivory;
+              position: relative;
+              margin-left: 10px;
+              top: 5px;
+              left: -250px;
+              z-index: -4;
             }
           }
         }
+      }
 
-        .view-Projects {
+      .view-Projects {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        // border: ivory solid 1px;
+        .text {
           display: flex;
-          flex-direction: column;
           justify-content: center;
+          color: rgb(80, 182, 230);
           // border: ivory solid 1px;
-          .text {
-            display: flex;
-            justify-content: center;
-            color: rgb(80, 182, 230);
-            // border: ivory solid 1px;
-            font-size: 1.4rem;
-            margin-bottom: 10px;
+          font-size: 1.4rem;
+          margin-bottom: 10px;
+        }
+        .portfolios {
+          display: flex;
+          .portfolio {
+            margin: 15px;
+            width: 280px;
+            height: 150px;
+            background-size: cover;
+            background-blend-mode: multiply;
           }
-          .portfolios {
-            display: flex;
-            .portfolio {
-              margin: 15px;
-              width: 280px;
-              height: 150px;
-            }
+          #portfolio1 {
+            background-image: url("../assets/project-2.jpg");
+          }
+          #portfolio2 {
+            background-image: url("../assets/project-3.jpg");
+          }
+          #portfolio3 {
+            background-image: url("../assets/Projects.jpg");
           }
         }
       }
     }
   }
 }
-
 ::-webkit-scrollbar {
   width: 0px;
 }

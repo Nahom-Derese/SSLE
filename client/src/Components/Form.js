@@ -1,11 +1,13 @@
-import { React, useState } from "react";
+import { React, useState, useContext } from "react";
 import { useSpring, animated } from "react-spring";
 import { useLazyQuery } from "@apollo/client";
 import { LOAD_USERS } from "../GraphQL/Queries";
+import { ResultContext } from "../Contexts/ResultContext";
 
-function Form() {
+function Form({ setToggle_2, Toggle_2 }) {
   //React-Spring Stuff Here
   const [Toggled, setToggled] = useState(false);
+  const [Data, setData] = useContext(ResultContext);
 
   const fade = useSpring({
     background: Toggled
@@ -19,25 +21,29 @@ function Form() {
     variables: { Reg_no: Reg_no },
   });
 
-  const [Data, setData] = useState([]);
-
   if (loading) return <h1>Loading...</h1>;
   if (error) return <p>Error has Occured: {error.message}</p>;
   if (data) {
     setData(data.getSingleResult);
+    setToggle_2(!Toggle_2);
   }
 
   return (
     <div className="Form-container" id="demo">
       <form
         onSubmit={() => {
-          getResult();
+          if (Reg_no >= 367635 && Reg_no <= 367912) {
+            getResult();
+          } else {
+            alert("Please Enter A Valid Registration number");
+          }
         }}
       >
         <div className="input">
           <label>Registration number :</label>
           <input
             type="text"
+            placeholder="Reg_no ....."
             onChange={(event) => {
               setReg_no(parseInt(event.target.value));
             }}

@@ -19,6 +19,10 @@ function ParallaxComponents() {
     transform: `translateY(${offsetY * 0.15}px)`,
   });
 
+  const effect4 = useSpring({
+    transform: `translateY(${offsetY * -0.35}px)`,
+  });
+
   const handleScroll = () => {
     setOffsetY(window.pageYOffset);
   };
@@ -30,7 +34,7 @@ function ParallaxComponents() {
 
   return (
     <Fragment>
-      <div className="orb"></div>
+      <animated.div className="orb" style={effect4}></animated.div>
       <animated.img className="item" src={Gcap} style={effect}></animated.img>
       <animated.div className="item-1" style={effect}></animated.div>
       <animated.img
