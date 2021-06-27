@@ -5,36 +5,61 @@ import {
   GraphQLList,
   GraphQLInt,
 } from "graphql";
-import UserType from "../Defs/Student.js";
-import Data from "../../Data.json";
+import StudentModel from "../../Models/Student.js";
+import Student from "../Defs/Student.js";
+// import Data from "../../Data.json";
 
 const Rootquery = new GraphQLObjectType({
   name: "RootQueryType",
   fields: {
     getAllResults: {
-      type: new GraphQLList(UserType),
-      resolve(parent, args) {
-        return Data;
+      type: new GraphQLList(Student),
+      async resolve(parent, args) {
+        return StudentModel.find().then((res) => res);
       },
     },
 
     getResultByReg_no: {
-      type: UserType,
+      type: Student,
       args: {
         Reg_no: { type: GraphQLInt },
       },
       resolve(parent, args) {
-        return Data.find((result) => result.Reg_no === args.Reg_no);
+        return StudentModel.findOne({ Reg_no: args.Reg_no })
+          .then((res) => res)
+          .catch((err) => {
+            console.log(err);
+          });
       },
     },
 
     getResultByName: {
-      type: UserType,
+      type: new GraphQLList(Student),
       args: {
         Name: { type: GraphQLString },
       },
       resolve(parent, args) {
-        return Data.find((result) => result.Name === args.Name.toUpperCase());
+        return StudentModel.find({ Name: new RegExp(args.Name, "i") })
+          .then((res) => res)
+          .catch((err) => {
+            console.log(err);
+          });
+      },
+    },
+
+    getTopResult: {
+      type: new GraphQLList(Student),
+      args: {
+        TOP: { type: GraphQLInt },
+      },
+      resolve(parent, args) {
+        return StudentModel.find()
+          .limit(args.TOP)
+          .sort({ "Result.Total": -1 })
+          .then((res) => res)
+          .catch((err) => {
+            console.log(err);
+          });
       },
     },
   },

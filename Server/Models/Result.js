@@ -1,8 +1,8 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-const ResultSchema = new Schema({
+const Result = new Schema({
   Biology: {
     type: Number,
     required: true,
@@ -31,22 +31,10 @@ const ResultSchema = new Schema({
     type: Number,
     required: true,
   },
-  Economics: {
+  Total: {
     type: Number,
     required: true,
-  },
-  Geography: {
-    type: Number,
-    required: true,
-  },
-  History: {
-    type: Number,
-    required: true,
-  },
-  Student: {
-    type: Schema.Types.ObjectId,
-    ref: "Student",
   },
 });
 
-module.exports = mongoose.model("Results", ResultSchema);
+export default Result;

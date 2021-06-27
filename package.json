@@ -1,0 +1,22 @@
+{
+  "name": "ssle",
+  "version": "1.0.0",
+  "description": "Page for NCA GR-12 Students",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \" cd client/ && npm start  \"   \" cd Server/ && npm start \"  "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nahom-Derese/SSLE.git"
+  },
+  "author": "Nahom-Derese",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nahom-Derese/SSLE/issues"
+  },
+  "homepage": "https://github.com/Nahom-Derese/SSLE#readme",
+  "dependencies": {
+    "concurrently": "^6.2.0"
+  }
+}

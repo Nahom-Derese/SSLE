@@ -11,6 +11,7 @@ const Result = new GraphQLObjectType({
     Maths: { type: GraphQLInt },
     Physics: { type: GraphQLInt },
     SAT: { type: GraphQLInt },
+    Total: { type: GraphQLInt },
   }),
 });
 

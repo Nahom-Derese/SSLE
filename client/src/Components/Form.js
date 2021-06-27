@@ -4,7 +4,7 @@ import { useLazyQuery } from "@apollo/client";
 import { LOAD_BY_NAME, LOAD_BY_Reg_NO } from "../GraphQL/Queries";
 import { ResultContext } from "../Contexts/ResultContext";
 
-function Form({ setToggle_2, Toggle_2 }) {
+function Form({ setToggle_2, Toggle_2, Toggle_3, setToggle_3 }) {
   //React-Spring Stuff Here
   const [Toggled, setToggled] = useState(false);
   const [Data, setData] = useContext(ResultContext);
@@ -19,36 +19,46 @@ function Form({ setToggle_2, Toggle_2 }) {
   const [Reg_no, setReg_no] = useState(0);
   const [Name, setName] = useState("");
   const [Forgot, setForgot] = useState(false);
-  const [getResult, { data: data_1, loading: loading_1, error: error_1 }] =
-    useLazyQuery(LOAD_BY_Reg_NO, {
+  const [getResult, { data: data_1, loading: loading_1 }] = useLazyQuery(
+    LOAD_BY_Reg_NO,
+    {
+      fetchPolicy: "no-cache",
       variables: { Reg_no: Reg_no },
-    });
-  const [getName, { data: data_2, loading: loading_2, error: error_2 }] =
-    useLazyQuery(LOAD_BY_NAME, {
+      onCompleted: (data) => {
+        setData([data_1.getResultByReg_no]);
+        setToggle_2(!Toggle_2);
+      },
+    }
+  );
+  const [getName, { data: data_2, loading: loading_2 }] = useLazyQuery(
+    LOAD_BY_NAME,
+    {
+      fetchPolicy: "no-cache",
       variables: { Name: Name },
-    });
-
-  if (loading_1) return <h1>Loading...</h1>;
-  if (error_1) return <p>Error has Occured: {error_1.message}</p>;
-  if (data_1) {
-    if (data_1.getResultByReg_no) {
-      setData(data_1.getResultByReg_no);
-      setToggle_2(!Toggle_2);
+      onCompleted: (data) => {
+        setData(data.getResultByName);
+        if (data.getResultByName.length > 1) {
+          setToggle_3(!Toggle_3);
+        } else if (typeof data.getResultByName[0] === "object") {
+          setToggle_2(!Toggle_2);
+        } else {
+          alert(
+            "Unfortunately We couldn't find your Result by your name try using Reg_no"
+          );
+          window.location.reload();
+        }
+      },
     }
-  }
+  );
 
-  if (loading_2) {
-    return <></>;
+  if (data_1 && data_1.getResultByReg_no) {
+    console.log(data_1.getResultByReg_no);
   }
-  if (error_2) {
-    setData({});
+  if (loading_1) return <>loading</>;
+  if (data_2 && data_2.getResultByName) {
+    console.log(data_2.getResultByName);
   }
-  if (data_2) {
-    if (data_2.getResultByName) {
-      setData(data_2.getResultByName);
-      setToggle_2(!Toggle_2);
-    }
-  }
+  if (loading_2) return <>loading</>;
 
   return (
     <div className="Form-container" id="demo">
@@ -85,7 +95,6 @@ function Form({ setToggle_2, Toggle_2 }) {
             />
           )}
           <animated.button
-            type="submit"
             style={fade}
             onMouseEnter={() => {
               setToggled(!Toggled);

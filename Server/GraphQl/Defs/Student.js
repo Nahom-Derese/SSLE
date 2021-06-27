@@ -2,8 +2,8 @@ import graphql from "graphql";
 import { GraphQLObjectType, GraphQLString, GraphQLInt } from "graphql";
 import Result from "./Result.js";
 
-const UserType = new GraphQLObjectType({
-  name: "UserType",
+const Student = new GraphQLObjectType({
+  name: "Student",
   fields: () => ({
     Reg_no: { type: GraphQLInt },
     Name: { type: GraphQLString },
@@ -20,4 +20,4 @@ const UserType = new GraphQLObjectType({
   }),
 });
 
-export default UserType;
+export default Student;

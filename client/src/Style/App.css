@@ -57,6 +57,7 @@ body {
 .App nav .nav-bar .links {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 23vw;
 }
 .App nav .nav-bar .links a {
@@ -77,6 +78,13 @@ body {
   background: none;
   outline: none !important;
   border: none;
+}
+.App nav .nav-bar .links button img {
+  width: 15px;
+  height: 15px;
+  filter: invert(1);
+  position: relative;
+  top: 2px;
 }
 .App nav .nav-bar .links button::after {
   position: absolute;
@@ -278,6 +286,55 @@ body {
 .App .main-container .container .Form-container .input select:focus {
   outline: none;
 }
+.App .main-container .container .WhoAreYou {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: #84d4e2 2px solid;
+  border-radius: 35px;
+  -webkit-backdrop-filter: blur(0.8px);
+          backdrop-filter: blur(0.8px);
+  background: rgba(0, 0, 0, 0.466);
+  width: 520px;
+  height: 350px;
+  transform: translate(-50%, -45%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.App .main-container .container .WhoAreYou .container {
+  width: 500px;
+  height: 335px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.App .main-container .container .WhoAreYou .container .student-class {
+  padding: 5px;
+  margin: 10px;
+  width: 350px;
+  border: #84d4e2 2px solid;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+  transition: all ease-in-out 300ms;
+}
+.App .main-container .container .WhoAreYou .container .student-class h4 {
+  color: #eef08c;
+  transition: all ease-in-out 300ms;
+}
+.App .main-container .container .WhoAreYou .container .student-class :hover {
+  color: #e2e630;
+  background: none !important;
+}
+.App .main-container .container .WhoAreYou .container :hover {
+  background-color: rgba(240, 248, 255, 0.308);
+}
 .App .main-container .container .Results-Card {
   position: absolute;
   left: 50%;
@@ -439,16 +496,54 @@ body {
   background: rgba(209, 163, 78, 0.274);
 }
 .App .main-container .container .Results-Card .Stats-Container .Second_line .Top-10-viewport {
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
   border-radius: 20px;
   margin: 6px;
   height: 218px;
-  width: 320px;
+  width: 350px;
   border: white solid 1px;
   background: rgba(132, 212, 226, 0.3);
+}
+.App .main-container .container .Results-Card .Stats-Container .Second_line .Top-10-viewport .container-top {
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  height: 203px;
+  width: 3470px;
+  overflow-y: auto;
+  transition: all ease-in 500ms;
+}
+.App .main-container .container .Results-Card .Stats-Container .Second_line .Top-10-viewport .container-top h3 {
+  margin-top: 100px;
+  margin-bottom: 5px;
+}
+.App .main-container .container .Results-Card .Stats-Container .Second_line .Top-10-viewport .container-top :hover {
+  background: none !important;
+}
+.App .main-container .container .Results-Card .Stats-Container .Second_line .Top-10-viewport .container-top .top {
+  background: rgba(15, 15, 15, 0.185);
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 7px;
+  font-size: 0.85rem;
+  width: 275px;
+  border-radius: 10px;
+  border: white solid 1px;
+  margin: 4px;
+  cursor: pointer;
+}
+.App .main-container .container .Results-Card .Stats-Container .Second_line .Top-10-viewport .container-top .top span {
+  text-align: right;
+  margin-left: auto;
+  margin-right: 5px;
+}
+.App .main-container .container .Results-Card .Stats-Container .Second_line .Top-10-viewport .container-top :hover {
+  background: rgba(208, 209, 207, 0.322);
 }
 .App .main-container .container .Results-Card .Stats-Container .Similar-viewport {
   display: flex;

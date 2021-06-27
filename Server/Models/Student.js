@@ -1,10 +1,11 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+import Result from "./Result.js";
 
 const Schema = mongoose.Schema;
 
 const studentSchema = new Schema({
   Reg_no: {
-    type: String,
+    type: Number,
     required: true,
   },
   Name: {
@@ -24,9 +25,11 @@ const studentSchema = new Schema({
     required: true,
   },
   Result: {
-    type: Schema.Types.ObjectId,
-    ref: "Results",
+    type: Result,
+    required: true,
   },
 });
 
-module.exports = mongoose.model("Student", studentSchema);
+const StudentModel = mongoose.model("results", studentSchema);
+
+export default StudentModel;

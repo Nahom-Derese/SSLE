@@ -26,12 +26,6 @@ function Results() {
     config: config.gentle,
   });
 
-  function isEmpty(obj) {
-    return Object.keys(obj).length === 0;
-  }
-
-  let Total = 0;
-
   return (
     <div className="Results-Card">
       {transitionOut((style, item) =>
@@ -42,25 +36,25 @@ function Results() {
               <div className="detail">
                 <span>Name :</span>
                 <div>
-                  <span>{!isEmpty(Data) ? Data.Name : "null"}</span>
+                  <span>{Data[0] ? Data[0].Name : "null"}</span>
                 </div>
               </div>
               <div className="detail">
                 <span>Sex :</span>
                 <div>
-                  <span>{!isEmpty(Data) ? Data.Sex : "null"}</span>
+                  <span>{Data[0] ? Data[0].Sex : "null"}</span>
                 </div>
               </div>
               <div className="detail">
                 <span>School :</span>
                 <div>
-                  <span>{!isEmpty(Data) ? Data.School : "null"}</span>
+                  <span>{Data[0] ? Data[0].School : "null"}</span>
                 </div>
               </div>
               <div className="detail">
                 <span>Stream :</span>
                 <div>
-                  <span>{!isEmpty(Data) ? Data.Stream : "null"}</span>
+                  <span>{Data[0] ? Data[0].Stream : "null"}</span>
                 </div>
               </div>
               <div className="next-container">
@@ -80,60 +74,50 @@ function Results() {
               <div>
                 <span>Biology</span>
                 <span className="value">
-                  {!isEmpty(Data) ? Data.Result.Biology : "null"}
+                  {Data[0] ? Data[0].Result.Biology : "null"}
                 </span>
               </div>
               <div>
                 <span>Civics</span>
                 <span className="value">
-                  {!isEmpty(Data) ? Data.Result.Civics : "null"}
+                  {Data[0] ? Data[0].Result.Civics : "null"}
                 </span>
               </div>
               <div>
                 <span>Chemistry</span>
                 <span className="value">
-                  {!isEmpty(Data) ? Data.Result.Chemistry : "null"}
+                  {Data[0] ? Data[0].Result.Chemistry : "null"}
                 </span>
               </div>
               <div>
                 <span>Physics</span>
                 <span className="value">
-                  {!isEmpty(Data) ? Data.Result.Physics : "null"}
+                  {Data[0] ? Data[0].Result.Physics : "null"}
                 </span>
               </div>
               <div>
                 <span>Maths</span>
                 <span className="value">
-                  {!isEmpty(Data) ? Data.Result.Maths : "null"}
+                  {Data[0] ? Data[0].Result.Maths : "null"}
                 </span>
               </div>
               <div>
                 <span>SAT</span>
                 <span className="value">
-                  {!isEmpty(Data) ? Data.Result.SAT : "null"}
+                  {Data[0] ? Data[0].Result.SAT : "null"}
                 </span>
               </div>
               <div>
                 <span>English</span>
                 <span className="value">
-                  {!isEmpty(Data) ? Data.Result.English : "null"}
+                  {Data[0] ? Data[0].Result.English : "null"}
                 </span>
               </div>
               <hr size="1" width="108%" />
               <div>
                 <span className="total">Total</span>
                 <span className="value">
-                  {!isEmpty(Data)
-                    ? Object.keys(Data.Result).map((result) => {
-                        if (result !== "__typename") {
-                          Total = Total + Data.Result[result];
-                        }
-                        if (result === "SAT") {
-                          return Total;
-                        }
-                        return <></>;
-                      })
-                    : "null"}
+                  {Data[0] ? Data[0].Result.Total : "null"}
                 </span>
               </div>
             </div>

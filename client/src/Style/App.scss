@@ -30,6 +30,18 @@
   margin: 20px 30px 35px 30px;
   border-radius: 20px;
 }
+@mixin Form-container($width, $height) {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: rgb(132, 212, 226) 2px solid;
+  border-radius: 35px;
+  backdrop-filter: blur(0.8px);
+  background: rgba(0, 0, 0, 0.466);
+  width: $width;
+  height: $height;
+}
 
 body {
   background-color: rgb(224, 193, 125);
@@ -95,6 +107,7 @@ body {
       .links {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         width: 23vw;
 
         a {
@@ -115,6 +128,13 @@ body {
           background: none;
           outline: none !important;
           border: none;
+          img {
+            width: 15px;
+            height: 15px;
+            filter: invert(1);
+            position: relative;
+            top: 2px;
+          }
         }
 
         button::after {
@@ -218,16 +238,7 @@ body {
       }
 
       .Form-container {
-        position: absolute;
-        top: 55%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border: rgb(132, 212, 226) 2px solid;
-        border-radius: 35px;
-        backdrop-filter: blur(0.8px);
-        background: rgba(0, 0, 0, 0.466);
-        width: 520px;
-        height: 280px;
+        @include Form-container(520px, 280px);
 
         .input {
           // border: grey 2px solid;
@@ -284,6 +295,47 @@ body {
           textarea:focus,
           select:focus {
             outline: none;
+          }
+        }
+      }
+
+      .WhoAreYou {
+        @include Form-container(520px, 350px);
+        transform: translate(-50%, -45%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .container {
+          width: 500px;
+          height: 335px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          overflow-y: auto;
+          .student-class {
+            padding: 5px;
+            margin: 10px;
+            width: 350px;
+            border: rgb(132, 212, 226) 2px solid;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            cursor: pointer;
+            transition: all ease-in-out 300ms;
+            h4 {
+              color: rgb(238, 240, 140);
+              transition: all ease-in-out 300ms;
+            }
+            :hover {
+              color: rgb(226, 230, 48);
+              background: none !important;
+            }
+          }
+          :hover {
+            background-color: rgba(240, 248, 255, 0.308);
           }
         }
       }
@@ -449,16 +501,54 @@ body {
               background: rgba(209, 163, 78, 0.274);
             }
             .Top-10-viewport {
-              color: white;
               display: flex;
               justify-content: center;
               align-items: center;
+              color: white;
               border-radius: 20px;
               margin: 6px;
               height: 218px;
-              width: 320px;
+              width: 350px;
               border: rgb(255, 255, 255) solid 1px;
               background: rgba(132, 212, 226, 0.3);
+              .container-top {
+                color: white;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-direction: column;
+                height: 203px;
+                width: 3470px;
+                overflow-y: auto;
+                transition: all ease-in 500ms;
+                h3 {
+                  margin-top: 100px;
+                  margin-bottom: 5px;
+                }
+                :hover {
+                  background: none !important;
+                }
+                .top {
+                  background: rgba(15, 15, 15, 0.185);
+                  display: flex;
+                  justify-content: flex-start;
+                  padding-left: 7px;
+                  font-size: 0.85rem;
+                  width: 275px;
+                  border-radius: 10px;
+                  border: rgb(255, 255, 255) solid 1px;
+                  margin: 4px;
+                  cursor: pointer;
+                  span {
+                    text-align: right;
+                    margin-left: auto;
+                    margin-right: 5px;
+                  }
+                }
+                :hover {
+                  background: rgba(208, 209, 207, 0.322);
+                }
+              }
             }
           }
 

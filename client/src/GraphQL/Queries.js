@@ -17,6 +17,7 @@ export const LOAD_BY_Reg_NO = gql`
         Maths
         Physics
         SAT
+        Total
       }
     }
   }
@@ -39,6 +40,20 @@ export const LOAD_BY_NAME = gql`
         Maths
         Physics
         SAT
+        Total
+      }
+    }
+  }
+`;
+
+export const LOAD_TOP_RESULT = gql`
+  query getTopResult($TOP: Int) {
+    getTopResult(TOP: $TOP) {
+      Name
+      Sex
+      Stream
+      Result {
+        Total
       }
     }
   }
