@@ -2,6 +2,17 @@ import React, { Fragment, useState, useEffect } from "react";
 import pervious from "../assets/next.svg";
 import { useQuery } from "@apollo/client";
 import { LOAD_TOP_RESULT } from "../GraphQL/Queries";
+import EmbedSDK from "@mongodb-js/charts-embed-dom";
+
+const SDK = new EmbedSDK({
+  baseUrl: "https://charts.mongodb.com/charts-ssle--matric-web--qghvt",
+});
+
+const chart = SDK.createChart({
+  chartId: "5d40bef8-ed97-4a61-83dc-2658d6542491",
+  width: 640,
+  height: 400,
+});
 
 function Stats({ toggler, toggle }) {
   const [Top, setTop] = useState([]);
@@ -70,7 +81,7 @@ function Stats({ toggler, toggle }) {
 
       <div className="Similar-viewport">
         <div className="Placement-viewport">
-          <h1>Similar Placement</h1>
+          {/* {chart.render(document.getElementsByClassName("Placement-viewport"))} */}
         </div>
         <div className="Result-viewport">
           <h1>Similar Result</h1>

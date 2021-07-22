@@ -7,7 +7,7 @@ import {
 } from "graphql";
 import StudentModel from "../../Models/Student.js";
 import Student from "../Defs/Student.js";
-// import Data from "../../Data.json";
+import Data from "../../run_results.json";
 
 const Rootquery = new GraphQLObjectType({
   name: "RootQueryType",
@@ -15,7 +15,7 @@ const Rootquery = new GraphQLObjectType({
     getAllResults: {
       type: new GraphQLList(Student),
       async resolve(parent, args) {
-        return StudentModel.find().then((res) => res);
+        return await StudentModel.find().then((res) => res);
       },
     },
 

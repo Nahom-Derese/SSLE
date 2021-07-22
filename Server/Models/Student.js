@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import Result from "./Result.js";
+import Placement from "./Placement.js";
 
 const Schema = mongoose.Schema;
 
@@ -9,6 +10,10 @@ const studentSchema = new Schema({
     required: true,
   },
   Name: {
+    type: String,
+    required: true,
+  },
+  Eligibility: {
     type: String,
     required: true,
   },
@@ -27,6 +32,9 @@ const studentSchema = new Schema({
   Result: {
     type: Result,
     required: true,
+  },
+  Placement: {
+    type: Placement,
   },
 });
 

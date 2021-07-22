@@ -26,6 +26,14 @@ function Results() {
     config: config.gentle,
   });
 
+  const Capitalize = (Name) => {
+    const s = Name.toLowerCase().split(" ");
+    for (var i = 0; i < s.length; i++) {
+      s[i] = s[i].charAt(0).toUpperCase() + s[i].slice(1);
+    }
+    return s.join(" ");
+  };
+
   return (
     <div className="Results-Card">
       {transitionOut((style, item) =>
@@ -36,7 +44,7 @@ function Results() {
               <div className="detail">
                 <span>Name :</span>
                 <div>
-                  <span>{Data[0] ? Data[0].Name : "null"}</span>
+                  <span>{Data[0] ? Capitalize(Data[0].Name) : "null"}</span>
                 </div>
               </div>
               <div className="detail">
