@@ -169,7 +169,7 @@ function Footer() {
                 style={animate_6}
               />
             </a>
-            <a href="#/">
+            <a href="https://nahomd-portfolio.netlify.app/">
               <animated.div
                 onMouseEnter={() => {
                   const newArray = [...toggle];
